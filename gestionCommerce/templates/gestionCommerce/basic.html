@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'gestionCommerce/css/bootstrap.css' %}">
+    <title>{% block title %} {% endblock %}</title>
+</head>
+<body>
+    <div>
+        <nav class="navbar navbar-expand-lg navbar-light" style="padding: 0.5rem; background-color: #265f88; font-family:serif; font-size: large; font-weight: bold;">
+        <!-- <a class="navbar-brand">    icon</a> -->
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav">
+            <a class="nav-item nav-link active" href="{% url 'gestionCommerce:index' %}" style="color: #ffa0a0;">Accueil</a>
+            <a class="nav-item nav-link" href="{% url 'gestionCommerce:index' %}" style="color: #d6d6d6;">Clients</a>
+            <a class="nav-item nav-link" href="#" style="color: #d6d6d6;">Produits</a>
+            <a class="nav-item nav-link" href="#" style="color: #d6d6d6;">Commandes</a>
+            </div>
+        </div>
+        </nav>
+    </div>
+    <div class="container-fluid" style="background-color: rgb(255, 241, 241); font-family: serif; padding: 1%;">
+        {% block content %} {% endblock %}
+    </div>
+   
+    <script src="{% static 'gestionCommerce/js/jquery.js' %}"></script>  
+    <script src="{% static 'gestionCommerce/js/bootstrap.js' %}"></script>
+
+</body>
+</html>

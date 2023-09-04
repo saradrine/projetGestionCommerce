@@ -1,0 +1,59 @@
+{% extends 'gestionCommerce/basic.html' %} 
+{% block title %}Gestion Commerce | Page d'accueil{% endblock %}
+{% block content %}
+<div>
+    <br>
+    <h4>Bienvenue sur la page d'accueil de Gestion Commerce</h4>
+    <p>Cette application permet de gérer les produit qu'un vendeur fournit, ses client et leurs commandes d'achat</p>
+
+    <div>
+        {% if latest_client_list %}
+            <h4>La liste des client ajoutés  <a href="{% url 'gestionCommerce:addC' %}" class="btn btn-info">Ajouter un client</a></h4>
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Nom</th>
+                    <th scope="col">Prenom</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for client in latest_client_list %}
+                    <tr>
+                    <th scope="row">{{client.id}}</th>
+                    <td><a href="{% url 'gestionCommerce:client' client.id %}"> {{client.Nom}}</td>
+                    <td>{{client.Prenom}}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+            <h4>Aucun client n'a été ajouté  <a href="{% url 'gestionCommerce:addC' %}" class="btn btn-info">Ajouter un client</a></h4>
+                   
+        {% endif %}
+    </div> 
+    <div>
+        {% if latest_produit_list %}
+            <h4>La liste des produits ajoutés  <a href="{% url 'gestionCommerce:addC' %}" class="btn btn-info">Ajouter un produit</a></h4>
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Nom</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for produit in latest_produit_list %}
+                    <tr>
+                    <th scope="row">{{produit.id}}</th>
+                    <td><a href="{% url 'gestionCommerce:produit' produit.id %}"> {{produit.Nom}}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+            <h4>Aucun produit n'a été ajouté  <a href="{% url 'gestionCommerce:addC' %}" class="btn btn-info">Ajouter un produit</a></h4>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

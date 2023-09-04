@@ -1,0 +1,15 @@
+{% extends 'gestionCommerce/basic.html' %} 
+{% block title %}Gestion Commerce | Modifier les données{% endblock %}
+{% block content %}
+<div class="row">
+  <div class="col-sm-8 offset-2">
+    <h4 class="alert alert-info">Modifier les informations {{id}}</h4>
+    <form action="" method="POST">
+        {% csrf_token %}
+        {{form.as_p}}
+        <input type="submit" class="btn btn-success" value="Modifier" />
+        <a href="{% url 'gestionCommerce:index' %}" class="btn btn-info">Retour</a>
+    </form>
+  </div>
+</div>
+{% endblock content %}

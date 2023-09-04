@@ -1,0 +1,17 @@
+{% extends 'gestionCommerce/basic.html' %} 
+{% block title %}Gestion Commerce | Details de client{% endblock %}
+{% block content %}
+<h1>{{ client.Nom }} {{ client.Prenom }}</h1>
+<ul>
+    <li>Adresse: {{ client.Adresse }}</li>
+    <li>Pour contacter ce client :</li>
+    <ul>Telephone: {{ client.Telephone }}</ul>
+    <ul>Email: {{ client.Email }}</ul>
+</ul>
+<a href="{% url 'gestionCommerce:updateC' client.id %}" class="btn btn-warning btn-sm">Modifier</a> 
+                        <form action="{% url 'gestionCommerce:deleteC' client.id %}" method="POST" class="d-inline"> 
+                            {% csrf_token %}
+                            <input type="submit" class="btn btn-danger" value="Supprimer">
+                        </form>
+<a href="{% url 'gestionCommerce:index' %}" class="btn btn-info">Retour</a>
+{% endblock %}

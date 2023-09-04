@@ -1,0 +1,15 @@
+{% extends 'gestionCommerce/basic.html' %} 
+{% block title %}Gestion Commerce | Details de produit{% endblock %}
+{% block content %}
+<h1>{{ produit.Nom }}</h1>
+<ul>
+    <li>Description: {{ produit.Description }}</li>
+    <li>Prix: {{ produit.Prix }}</li>
+</ul>
+<a href="{% url 'gestionCommerce:updateP' produit.id %}" class="btn btn-warning btn-sm">Modifier</a> 
+                        <form action="{% url 'gestionCommerce:deleteP' produit.id %}" method="POST" class="d-inline"> 
+                            {% csrf_token %}
+                            <input type="submit" class="btn btn-danger" value="Supprimer">
+                        </form>
+<a href="{% url 'gestionCommerce:index' %}" class="btn btn-info">Retour</a>
+{% endblock %}
