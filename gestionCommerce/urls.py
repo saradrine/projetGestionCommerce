@@ -8,10 +8,10 @@ urlpatterns = [
     path("addProduit/", views.addP, name="addP"),
     path("client/<int:client_id>/", views.clientt, name="client"),
     path("client/<int:client_id>/update/", views.updateC, name="updateC"),
-    path("delete/<int:client_id>/", views.deleteC, name="deleteC"),
+    path("deleteC/<int:client_id>/", views.deleteC, name="deleteC"),
     path("client/<int:client_id>/commande/", views.commande, name="commande"),
     path("produit/<int:produit_id>/", views.produit, name="produit"),
     path("produit/<int:produit_id>/update/", views.updateP, name="updateP"),
-    path("delete/<int:produit_id>/", views.deleteP, name="deleteP"),
+    path("deleteP/<int:produit_id>/", views.deleteP, name="deleteP"),
 
 ]

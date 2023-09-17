@@ -6,8 +6,9 @@ from .models import Client, Produit
 class ClientRegistration(forms.ModelForm):
     class Meta:
         model = Client
-        fields = ['Nom', 'Prenom', 'Adresse', 'Email', 'Telephone', 'MotDePasse']
+        fields = ['CIN', 'Nom', 'Prenom', 'Adresse', 'Email', 'Telephone', 'MotDePasse']
         widgets = {
+            'CIN': forms.NumberInput(attrs={'class':'form-control'}),
             'Nom': forms.TextInput(attrs={'class':'form-control'}),
             'Prenom': forms.TextInput(attrs={'class':'form-control'}),
             'Email': forms.EmailInput(attrs={'class':'form-control'}),
@@ -20,8 +21,11 @@ class ClientRegistration(forms.ModelForm):
 class ProduitRegistration(forms.ModelForm):
     class Meta:
         model = Produit
-        fields = ['Nom', 'Prix']
+        fields = ['Nom', 'Prix', 'Quantite','Description', 'Image']
         widgets = {
             'Nom': forms.TextInput(attrs={'class':'form-control'}),
             'Prix': forms.NumberInput(attrs={'class':'form-control'}),
+            'Quantite': forms.NumberInput(attrs={'class':'form-control'}),
+            'Description': forms.Textarea(attrs={'class':'form-control'}),
+            'Image': forms.FileInput(attrs={'class':'form-control'}),
         }

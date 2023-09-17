@@ -1,59 +1,62 @@
 {% extends 'gestionCommerce/basic.html' %} 
 {% block title %}Gestion Commerce | Page d'accueil{% endblock %}
-{% block content %}
-<div>
-    <br>
-    <h4>Bienvenue sur la page d'accueil de Gestion Commerce</h4>
-    <p>Cette application permet de gérer les produit qu'un vendeur fournit, ses client et leurs commandes d'achat</p>
 
-    <div>
-        {% if latest_client_list %}
-            <h4>La liste des client ajoutés  <a href="{% url 'gestionCommerce:addC' %}" class="btn btn-info">Ajouter un client</a></h4>
-            <table class="table table-hover">
-                <thead>
-                    <tr>
-                    <th scope="col">ID</th>
-                    <th scope="col">Nom</th>
-                    <th scope="col">Prenom</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for client in latest_client_list %}
-                    <tr>
-                    <th scope="row">{{client.id}}</th>
-                    <td><a href="{% url 'gestionCommerce:client' client.id %}"> {{client.Nom}}</td>
-                    <td>{{client.Prenom}}</td>
-                    </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
-        {% else %}
-            <h4>Aucun client n'a été ajouté  <a href="{% url 'gestionCommerce:addC' %}" class="btn btn-info">Ajouter un client</a></h4>
-                   
-        {% endif %}
-    </div> 
-    <div>
-        {% if latest_produit_list %}
-            <h4>La liste des produits ajoutés  <a href="{% url 'gestionCommerce:addC' %}" class="btn btn-info">Ajouter un produit</a></h4>
-            <table class="table table-hover">
-                <thead>
-                    <tr>
-                    <th scope="col">ID</th>
-                    <th scope="col">Nom</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for produit in latest_produit_list %}
-                    <tr>
-                    <th scope="row">{{produit.id}}</th>
-                    <td><a href="{% url 'gestionCommerce:produit' produit.id %}"> {{produit.Nom}}</td>
-                    </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
-        {% else %}
-            <h4>Aucun produit n'a été ajouté  <a href="{% url 'gestionCommerce:addC' %}" class="btn btn-info">Ajouter un produit</a></h4>
-        {% endif %}
-    </div>
-</div>
-{% endblock %}
+
+        {% block clients %}
+            {% if client_list %}
+                <h2 class="card-title">Liste des Clients <a href="{% url 'gestionCommerce:addC' %}" style="border-radius: 50%; text-decoration: none; background-color: #7097c2; color: #fff; width: 30px; line-height: 25px;font-size: 30px;display: inline-block; text-align: center;">&plus;</a></h2>
+                <p class="card-text">Consultez la liste de tous vos clients.</p>
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">CIN</th>
+                        <th scope="col">Nom</th>
+                        <th scope="col">Prenom</th>
+                        <th scope="col"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for client in client_list %}
+                        <tr>
+                        <th scope="row">{{client.id}}</th>
+                        <td scope="row"> {{client.CIN}}</td>
+                        <td scope="row"> {{client.Nom}}</td>
+                        <td scope="row">{{client.Prenom}}</td>
+                        <td scope="row"><a href="{% url 'gestionCommerce:client' client.id %}" style="border-radius: 10%; text-decoration: none; background-color: #7097c2; color: #fff; width: 30px; line-height: 25px;font-size: 30px;display: inline-block; text-align: center;">&rarr;</a></td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            {% else %}
+                <h4>Aucun client n'a été ajouté  <a href="{% url 'gestionCommerce:addC' %}" style="border-radius: 50%; text-decoration: none; background-color: #7097c2; color: #fff; width: 30px; line-height: 25px;font-size: 30px;display: inline-block; text-align: center;">&plus;</a></h4>
+            {% endif %}
+        {% endblock %}
+        {% block produits %}
+            {% if produit_list %}
+                <h2 class="card-title">Liste des Produits <a href="{% url 'gestionCommerce:addP' %}" style="border-radius: 50%; text-decoration: none; background-color: #7097c2; color: #fff; width: 30px; line-height: 25px;font-size: 30px;display: inline-block; text-align: center;">&plus;</a></h2>
+                <p class="card-text">Explorez notre gamme de produits.</p>
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">Nom</th>
+                        <th scope="col">Quantité</th>
+                        <th scope="col"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for produit in produit_list %}
+                        <tr>
+                        <th scope="row">{{produit.id}}</th>
+                        <td scope="row"> {{produit.Nom}}</td>
+                        <td scope="row">{{produit.Quantite}}</td>
+                        <td scope="row"><a href="{% url 'gestionCommerce:produit' produit.id %}" style="border-radius: 10%; text-decoration: none; background-color: #7097c2; color: #fff; width: 30px; line-height: 25px;font-size: 30px;display: inline-block; text-align: center;">&rarr;</a></td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            {% else %}
+                <h4>Aucun produit n'a été ajouté  <a href="{% url 'gestionCommerce:addP' %}" style="border-radius: 50%; text-decoration: none; background-color: #7097c2; color: #fff; width: 30px; line-height: 25px;font-size: 30px;display: inline-block; text-align: center;">&plus;</a></h4>
+            {% endif %}
+        {% endblock %}

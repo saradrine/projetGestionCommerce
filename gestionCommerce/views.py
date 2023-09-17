@@ -1,15 +1,15 @@
 from django.shortcuts import render, get_object_or_404, HttpResponseRedirect
 
-from django.http import HttpResponse, Http404
+from django.http import HttpResponse
 from .models import Client, Produit
 from .forms import ClientRegistration, ProduitRegistration
 # Create your views here.
 
 def index(request):
-    latest_client_list = Client.objects.all()
-    latest_produit_list=Produit.objects.all()
-    context = {'latest_client_list': latest_client_list,
-                'latest_produit_list': latest_produit_list,
+    client_list = Client.objects.all()
+    produit_list=Produit.objects.all()
+    context = {'client_list': client_list,
+                'produit_list': produit_list,
                }
     return render(request, "gestionCommerce/index.html",context)
 
@@ -61,13 +61,14 @@ def addC(request):
     if request.method == 'POST':
         fm = ClientRegistration(request.POST)
         if fm.is_valid():
+            cim = fm.cleaned_data['CIN']
             nm = fm.cleaned_data['Nom']
             pm = fm.cleaned_data['Prenom']
             em = fm.cleaned_data['Email']
             adr = fm.cleaned_data['Adresse']
             tm = fm.cleaned_data['Telephone']
             pw = fm.cleaned_data['MotDePasse']
-            reg = Client(Nom = nm, Prenom=pm, Email = em, Adresse= adr, Telephone= tm, MotDePasse = pw)
+            reg = Client(CIN = cim, Nom = nm, Prenom=pm, Email = em, Adresse= adr, Telephone= tm, MotDePasse = pw)
             reg.save()
             fm = ClientRegistration()
     else:
@@ -81,7 +82,10 @@ def addP(request):
         if f.is_valid():
             nm = f.cleaned_data['Nom']
             pr = f.cleaned_data['Prix']
-            reg = Produit(Nom = nm, Prix=pr)
+            des = f.cleaned_data['Description']
+            qt = f.cleaned_data['Quantite']
+            img = f.cleaned_data['Image']
+            reg = Produit(Nom = nm, Prix=pr, Description= des, Quantite = qt, Image = img)
             reg.save()
             f = ProduitRegistration()
     else:

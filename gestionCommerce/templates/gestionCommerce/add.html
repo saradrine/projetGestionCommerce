@@ -1,14 +1,30 @@
- {% extends 'gestionCommerce/basic.html' %}
-{% block title %}Gestion Commerce | Ajouter un client{% endblock %}
+{% extends 'gestionCommerce/basic.html' %}
+{% block title %}Gestion Commerce | Ajouter un client/produit{% endblock %}
 {% block content %}
- <div>
-    <h4 class="text-center alert alert alert-info">
-      Ajouter un nouveau client/produit
-    </h4>
-    <form action="" method="POST">
-      {% csrf_token %} {{form.as_p}}
-      <input type="submit" class="btn btn-success" value="Ajouter"/>
-      <a href="{% url 'gestionCommerce:index' %}" class="btn btn-info">Retour</a>
-    </form>
- </div>
+<div class="container">
+  <div class="jumbotron text-center mt-5">
+    <h1 class="display-4">Ajouter un nouveau client/produit</h1>
+  </div>
+  <div class="col-md-6">
+    <div class="card mb-4">
+      <div class="card-body">
+        <form action="" method="POST">
+          {% csrf_token %} {{form.as_p}}
+          <div style="text-align: center;">
+            <input type="submit" class="btn btn-success" style="border-radius: 7%; height:40px; text-decoration: none;display: inline-block; text-align: center;   border: none;
+                outline: none;
+                padding: 8px;
+                margin: 0;" value="Ajouter" />
+            <a href="{% url 'gestionCommerce:index' %}" style="border-radius: 7%; height:40px; text-decoration: none; background-color: #7097c2; color: #ffffff;display: inline-block; text-align: center;   border: none;
+                outline: none;
+                padding: 8px;
+                margin: 0;">Retour</a>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
+{% block contents %}
 {% endblock %}

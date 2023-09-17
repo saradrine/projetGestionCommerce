@@ -1,15 +1,28 @@
-{% extends 'gestionCommerce/basic.html' %} 
+{% extends 'gestionCommerce/basic.html' %}
 {% block title %}Gestion Commerce | Modifier les données{% endblock %}
 {% block content %}
-<div class="row">
-  <div class="col-sm-8 offset-2">
-    <h4 class="alert alert-info">Modifier les informations {{id}}</h4>
-    <form action="" method="POST">
-        {% csrf_token %}
-        {{form.as_p}}
-        <input type="submit" class="btn btn-success" value="Modifier" />
-        <a href="{% url 'gestionCommerce:index' %}" class="btn btn-info">Retour</a>
-    </form>
+<div class="container">
+  <div class="jumbotron text-center mt-5">
+    <h1 class="display-4">Modifier les informations du client/produit</h1>
+  </div>
+  <div class="col-md-6">
+    <div class="card mb-4">
+      <div class="card-body">
+        <form action="" method="POST">
+          {% csrf_token %} {{form.as_p}}
+          <div style="text-align: center;">
+            <input type="submit" class="btn btn-warning" value="Modifier" style="height: 42px;" />              
+            <a href="{% url 'gestionCommerce:index' %}" style="border-radius: 7%; height:42px; width: 90px; text-decoration: none; background-color: #7097c2; color: #ffffff;display: inline-block; text-align: center;   border: none;
+                outline: none;
+                padding: 7px;
+                margin: 0;">Retour</a>
+          </div>
+        </form>
+      </div>
+    </div>
   </div>
 </div>
 {% endblock content %}
+
+{% block contents %}
+{% endblock %}
