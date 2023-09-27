@@ -1,0 +1,52 @@
+{% extends 'gestionCommerce/basic.html' %}
+{% block title %}Gestion Commerce | Ajouter une commande{% endblock %}
+{% block content %}
+<div class="container">
+    <div class="jumbotron text-center mt-5">
+        <h1 class="display-4">Ajouter une nouvelle commande</h1>
+    </div>
+    <div class="col-md-6">
+        <div class="card mb-4">
+            <div class="card-body">
+                <form action="" method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
+
+                    {{ form.num.label_tag }}
+                    {{ form.num }}
+                    {{ form.client.label_tag }}
+                    {{ form.client }}
+                    {{ form.date_commande.label_tag }}
+                    {{ form.date_commande }}
+                    {{ form.type_facture.label_tag }}
+                    {{ form.type_facture }}
+                    
+                    <hr>
+
+                    {{ formset.management_form }}
+                    {% for form in formset %}
+                    {{ form.id }}
+                    {{ form.produit.label_tag }}
+                    {{ form.produit }}
+                    {{ form.Quantite.label_tag }}
+                    {{ form.Quantite }}
+                    <br>
+                    {% endfor %}
+
+                    <div style="text-align: center;">
+                        <input type="submit" class="btn btn-success" style="border-radius: 7%; height:40px; text-decoration: none;display: inline-block; text-align: center;   border: none;
+                outline: none;
+                padding: 8px;
+                margin: 0;" value="Ajouter" />
+                        <a href="{% url 'gestionCommerce:index' %}" style="border-radius: 7%; height:40px; text-decoration: none; background-color: #7097c2; color: #ffffff;display: inline-block; text-align: center;   border: none;
+                outline: none;
+                padding: 8px;
+                margin: 0;">Retour</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+{% block contents %}
+{% endblock %}

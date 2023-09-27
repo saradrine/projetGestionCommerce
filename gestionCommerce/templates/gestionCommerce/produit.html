@@ -6,20 +6,20 @@
         <div class="card mb-4">
             <div class="card-body">
                 <div class="jumbotron text-center ">
-                    <h1 class="display-4">{{ produit.Nom }}</h1>
+                    <h4 class="display-4"><b><i>{{ produit.Nom }}</i></b></h4>
                 </div>
                 <ul>
-                    <li>Description: {{ produit.Description }}</li>
-                    <li>Prix: {{ produit.Prix }}dt</li>
-                    <li>Quantité disponible: {{ produit.Quantite }}</li>
-                    <img src="{{ produit.Image.url }}" style="max-width: 250px;">
+                    <li><b>Description:</b> {{ produit.Description }}</li>
+                    <li><b>Prix:</b> {{ produit.Prix }}dt</li>
+                    <img src="{{ produit.Image.url }}" alt="{{ produit.Nom }}" style="max-width: 250px;">
                 </ul>
                 <div style="text-align: center;">
                     <a href="{% url 'gestionCommerce:updateP' produit.id %}" class="btn btn-warning">Modifier</a>
-                    <form action="{% url 'gestionCommerce:deleteP' produit.id %}" method="POST" class="d-inline">
+                    <!-- <form action="{% url 'gestionCommerce:deleteP' produit.id %}" method="POST" class="d-inline">
                         {% csrf_token %}
                         <input type="submit" class="btn btn-danger" value="Supprimer">
-                    </form>
+                    </form> -->
+                    <a href="{% url 'gestionCommerce:deleteP' produit.id %}" class="btn btn-danger">Supprimer</a>
                     <br>
                     <a href="{% url 'gestionCommerce:index' %}"
                         style="border-radius: 7%; width: 100px; text-decoration: none; background-color: #7097c2; color: #ffffff;display: inline-block; text-align: center; border: none; outline: none; padding: 1.5%; margin: 5px;">Retour</a>

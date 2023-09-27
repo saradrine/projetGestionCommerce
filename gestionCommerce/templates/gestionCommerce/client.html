@@ -6,20 +6,22 @@
         <div class="card mb-4">
             <div class="card-body">
                 <div class="jumbotron text-center ">
-                    <h1 class="display-4">{{ client.Nom }} {{ client.Prenom }}</h1>
+                    <h3 class="display-4"><b><i>{{ client.Nom }} {{ client.Prenom }}</i></b></h3>
                 </div>
                 <ul>
-                    <li>Adresse: {{ client.Adresse }}</li>
-                    <li>Pour contacter ce client :</li>
-                    <ul>Telephone: {{ client.Telephone }}</ul>
-                    <ul>Email: {{ client.Email }}</ul>
+                    <li><b>CIN:</b> {{ client.CIN }}</li>
+                    <li><b>Adresse:</b> {{ client.Adresse }}</li>
+                    <li><b>Pour contacter ce client:</b></li>
+                    <ul><b>Telephone:</b> {{ client.Telephone }}</ul>
+                    <ul><b>Email:</b> {{ client.Email }}</ul>
                 </ul>
                 <div style="text-align: center;">
                     <a href="{% url 'gestionCommerce:updateC' client.id %}" class="btn btn-warning">Modifier</a>
-                    <form action="{% url 'gestionCommerce:deleteC' client.id %}" method="POST" class="d-inline">
+                    <!-- <form action="{% url 'gestionCommerce:deleteC' client.id %}" method="POST" class="d-inline">
                         {% csrf_token %}
                         <input type="submit" class="btn btn-danger" value="Supprimer">
-                    </form>
+                    </form> -->
+                    <a href="{% url 'gestionCommerce:deleteC' client.id %}" class="btn btn-danger">Supprimer</a>
                     <br>
                     <a href="{% url 'gestionCommerce:index' %}"
                         style="border-radius: 7%; width: 100px; text-decoration: none; background-color: #7097c2; color: #ffffff;display: inline-block; text-align: center; border: none; outline: none; padding: 1.5%; margin: 5px;">Retour</a>

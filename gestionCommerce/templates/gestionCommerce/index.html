@@ -41,7 +41,6 @@
                         <tr>
                         <th scope="col">ID</th>
                         <th scope="col">Nom</th>
-                        <th scope="col">Quantité</th>
                         <th scope="col"></th>
                         </tr>
                     </thead>
@@ -50,7 +49,6 @@
                         <tr>
                         <th scope="row">{{produit.id}}</th>
                         <td scope="row"> {{produit.Nom}}</td>
-                        <td scope="row">{{produit.Quantite}}</td>
                         <td scope="row"><a href="{% url 'gestionCommerce:produit' produit.id %}" style="border-radius: 10%; text-decoration: none; background-color: #7097c2; color: #fff; width: 30px; line-height: 25px;font-size: 30px;display: inline-block; text-align: center;">&rarr;</a></td>
                         </tr>
                         {% endfor %}
@@ -59,4 +57,38 @@
             {% else %}
                 <h4>Aucun produit n'a été ajouté  <a href="{% url 'gestionCommerce:addP' %}" style="border-radius: 50%; text-decoration: none; background-color: #7097c2; color: #fff; width: 30px; line-height: 25px;font-size: 30px;display: inline-block; text-align: center;">&plus;</a></h4>
             {% endif %}
+        {% endblock %}
+
+        {% block commandes %}
+        {% if commande_list %}
+        <h2 class="card-title">Liste des Commandes <a href="{% url 'gestionCommerce:addCo' %}"
+                style="border-radius: 50%; text-decoration: none; background-color: #7097c2; color: #fff; width: 30px; line-height: 25px;font-size: 30px;display: inline-block; text-align: center;">&plus;</a>
+        </h2>
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th scope="col">Num Commande</th>
+                    <th scope="col">Client</th>
+                    <th scope="col">Date</th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for commande in commande_list %}
+                <tr>
+                    <th scope="row">{{commande.num}}</th>
+                    <td scope="row"> {{commande.client}}</td>
+                    <td scope="row">{{commande.date_commande}}</td>
+                    <td scope="row"><a href="{% url 'gestionCommerce:commande' commande.id %}"
+                            style="border-radius: 10%; text-decoration: none; background-color: #7097c2; color: #fff; width: 30px; line-height: 25px;font-size: 30px;display: inline-block; text-align: center;">&rarr;</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% else %}
+        <h4>Aucune commande <a href="{% url 'gestionCommerce:addCo' %}"
+                style="border-radius: 50%; text-decoration: none; background-color: #7097c2; color: #fff; width: 30px; line-height: 25px;font-size: 30px;display: inline-block; text-align: center;">&plus;</a>
+        </h4>
+        {% endif %}
         {% endblock %}

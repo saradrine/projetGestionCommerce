@@ -13,5 +13,8 @@ urlpatterns = [
     path("produit/<int:produit_id>/", views.produit, name="produit"),
     path("produit/<int:produit_id>/update/", views.updateP, name="updateP"),
     path("deleteP/<int:produit_id>/", views.deleteP, name="deleteP"),
-
+    path("commande/<int:commande_id>/", views.commande, name="commande"),
+    path("addCommande/", views.addCo, name="addCo"),
+    path("commande/<int:commande_id>/update/", views.updateCo, name="updateCo"),
+    path("deleteCo/<int:commande_id>/", views.deleteCo, name="deleteCo"),
 ]
